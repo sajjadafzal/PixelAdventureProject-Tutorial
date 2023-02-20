@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Art/Pixel Adventure 1/Main Characters/Ninja Frog/Run (32x32).png" type="Texture" id=1]
 [ext_resource path="res://Art/Pixel Adventure 1/Main Characters/Ninja Frog/Idle (32x32).png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Art/Pixel Adventure 1/Main Characters/Ninja Frog/Jump (32x32).png" type="Texture" id=5]
 [ext_resource path="res://Art/Pixel Adventure 1/Main Characters/Ninja Frog/Hit (32x32).png" type="Texture" id=6]
 [ext_resource path="res://Art/Pixel Adventure 1/Main Characters/Ninja Frog/Wall Jump (32x32).png" type="Texture" id=7]
+[ext_resource path="res://Characters/Player.gd" type="Script" id=8]
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 4 )
@@ -210,11 +211,19 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="CapsuleShape2D" id=43]
+radius = 7.0
+height = 10.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 24 )
-animation = "Wall_Jump"
-frame = 3
+animation = "Idle"
+frame = 7
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5 )
+shape = SubResource( 43 )
