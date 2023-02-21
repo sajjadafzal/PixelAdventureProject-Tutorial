@@ -24,6 +24,10 @@ config/name="PixelAdventureProject-Tutorial"
 run/main_scene="res://Maps/Level1.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameSettings="*res://Singleton/GameSettings.tscn"
+
 [display]
 
 window/size/width=320
@@ -35,6 +39,7 @@ window/stretch/mode="2d"
 [global]
 
 window=false
+gravity=false
 
 [gui]
 

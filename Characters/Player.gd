@@ -9,10 +9,12 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = Vector2(
 		input.x * move_speed,
-		0
+		min(velocity.y + GameSettings.gravity,GameSettings.terminal_velocity)
 	)
 	
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
+	
+	print(velocity.y)
 	
 func get_player_input():
 	var input : Vector2
