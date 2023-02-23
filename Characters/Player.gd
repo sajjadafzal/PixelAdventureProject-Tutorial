@@ -5,6 +5,9 @@ export(float) var jump_impulse = 600
 
 enum STATE {IDLE, RUN, JUMP}
 
+onready var animation_tree = $AnimationTree 
+onready var animated_sprite = $AnimatedSprite
+
 var velocity : Vector2
 
 var current_state = STATE.IDLE setget set_current_state
@@ -12,6 +15,7 @@ var jumps = 0
 
 func _physics_process(delta: float) -> void:
 	var input = get_player_input()
+	adjust_flip_direction(input)
 	
 	velocity = Vector2(
 		input.x * move_speed,
@@ -20,8 +24,20 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
+	set_anim_parameters()
 	pick_next_state()
-	print(current_state)
+
+
+func adjust_flip_direction(input : Vector2):
+	if (sign(input.x) == 1):
+		animated_sprite.flip_h = false
+	elif(sign(input.x) == -1):
+		animated_sprite.flip_h = true
+			
+	
+func set_anim_parameters():
+	animation_tree.set("parameters/x_move/blend_position", sign(velocity.x))
+	
 	
 func pick_next_state():
 	if(is_on_floor()):
