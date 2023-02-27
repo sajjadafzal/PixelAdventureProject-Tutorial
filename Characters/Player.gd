@@ -36,7 +36,8 @@ func adjust_flip_direction(input : Vector2):
 			
 	
 func set_anim_parameters():
-	animation_tree.set("parameters/x_move/blend_position", sign(velocity.x))
+	animation_tree.set("parameters/x_sign/blend_position", sign(velocity.x))
+	animation_tree.set("parameters/y_sign/blend_amount", sign(velocity.y))
 	
 	
 func pick_next_state():
