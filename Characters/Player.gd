@@ -8,6 +8,8 @@ enum STATE {IDLE, RUN, JUMP}
 onready var animation_tree = $AnimationTree 
 onready var animated_sprite = $AnimatedSprite
 
+signal change_state(new_state_str,new_state_id)
+
 var velocity : Vector2
 
 var current_state = STATE.IDLE setget set_current_state
@@ -70,6 +72,8 @@ func set_current_state(new_state):
 			jump()
 		
 	current_state = new_state
+	emit_signal("change_state",STATE.keys()[new_state],new_state)
+	
 	
 func jump():
 	velocity.y = -jump_impulse
