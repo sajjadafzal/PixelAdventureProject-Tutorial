@@ -327,13 +327,14 @@ blend_point_2/pos = -1.0
 [sub_resource type="AnimationNodeBlend3" id=56]
 
 [sub_resource type="AnimationNodeBlendTree" id=52]
+graph_offset = Vector2( -100.075, 19.8499 )
 nodes/Fall/node = SubResource( 54 )
-nodes/Fall/position = Vector2( 320, 220 )
+nodes/Fall/position = Vector2( 340, 240 )
 nodes/Jump/node = SubResource( 55 )
-nodes/Jump/position = Vector2( 340, 40 )
+nodes/Jump/position = Vector2( 240, 40 )
 nodes/output/position = Vector2( 720, 100 )
 nodes/x_sign/node = SubResource( 51 )
-nodes/x_sign/position = Vector2( 100, 140 )
+nodes/x_sign/position = Vector2( 80, 160 )
 nodes/y_sign/node = SubResource( 56 )
 nodes/y_sign/position = Vector2( 520, 20 )
 node_connections = [ "output", 0, "y_sign", "y_sign", 0, "Jump", "y_sign", 1, "x_sign", "y_sign", 2, "Fall" ]
@@ -343,7 +344,9 @@ script = ExtResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 24 )
-animation = "Idle"
+animation = "run"
+frame = 11
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
@@ -360,7 +363,7 @@ anims/run = SubResource( 46 )
 tree_root = SubResource( 52 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/x_sign/blend_position = 0.0
+parameters/x_sign/blend_position = 1.0
 parameters/y_sign/blend_amount = 0.0
 
 [node name="StateLabel" type="Label" parent="."]

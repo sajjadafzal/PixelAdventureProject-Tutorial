@@ -40,7 +40,7 @@ func adjust_flip_direction(input : Vector2):
 func set_anim_parameters():
 	animation_tree.set("parameters/x_sign/blend_position", sign(velocity.x))
 	animation_tree.set("parameters/y_sign/blend_amount", sign(velocity.y))
-	
+	#print(animation_tree.get("parameters/x_sign/blend_position"))
 	
 func pick_next_state():
 	if(is_on_floor()):
