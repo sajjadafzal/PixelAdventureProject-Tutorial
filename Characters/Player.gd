@@ -2,8 +2,9 @@ extends KinematicBody2D
 
 export(float) var move_speed = 200
 export(float) var jump_impulse = 600
+export(int) var max_jumps = 2
 
-enum STATE {IDLE, RUN, JUMP}
+enum STATE {IDLE, RUN, JUMP,DOUBLE_JUMP}
 
 onready var animation_tree = $AnimationTree 
 onready var animated_sprite = $AnimatedSprite
@@ -54,8 +55,8 @@ func pick_next_state():
 			self.current_state = STATE.IDLE
 	
 	else:
-		#TODO Double jump
-		pass
+		if (Input.is_action_just_pressed("jump") && jumps < max_jumps):
+			self.current_state = STATE.DOUBLE_JUMP
 			
 func get_player_input():
 	var input : Vector2
@@ -68,7 +69,7 @@ func get_player_input():
 
 func set_current_state(new_state):
 	match(new_state):
-		STATE.JUMP:
+		STATE.JUMP,STATE.DOUBLE_JUMP:
 			jump()
 		
 	current_state = new_state
