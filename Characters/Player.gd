@@ -69,8 +69,11 @@ func get_player_input():
 
 func set_current_state(new_state):
 	match(new_state):
-		STATE.JUMP,STATE.DOUBLE_JUMP:
+		STATE.JUMP:
 			jump()
+		STATE.DOUBLE_JUMP:
+			jump()
+			animation_tree.set("parameters/double_jump/active", true)
 		
 	current_state = new_state
 	emit_signal("change_state",STATE.keys()[new_state],new_state)
